@@ -8,7 +8,7 @@ export class CompareController {
   constructor(private readonly comparison: ComparisonService) {}
 
   @Post('compare-txt')
-  compare(@Body() request: CompareTextsDTO): Promise<number> {
+  compare(@Body() request: CompareTextsDTO): Promise<string> {
     return this.comparison.getSimilarity(request.cv, request.job);
   }
 }

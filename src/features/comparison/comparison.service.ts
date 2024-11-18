@@ -9,7 +9,7 @@ export class ComparisonService {
     private readonly calculation: CalculationService,
   ) {}
 
-  public async getSimilarity(cv: string, job: string): Promise<number> {
+  public async getSimilarity(cv: string, job: string): Promise<string> {
     const [cvEntities, jobEntities] = await Promise.all([
       this.model.extractEntities('[RESUME]' + cv),
       this.model.extractEntities('[JOB_DESCRIPTION]' + job),
@@ -23,6 +23,6 @@ export class ComparisonService {
       jobNormalized,
     );
 
-    return factor * 100;
+    return (factor * 100).toFixed(2) + '%';
   }
 }
